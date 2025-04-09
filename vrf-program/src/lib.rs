@@ -12,14 +12,17 @@ pub use crate::state::{calculate_game_number, GameAccountState, GameResult, Game
 pub use crate::vrf::Vrf;
 pub use crate::client::VrfClient;
 
+#[cfg(not(feature = "no-entrypoint"))]
 use solana_program::{
     account_info::AccountInfo, entrypoint, entrypoint::ProgramResult, pubkey::Pubkey,
 };
 
 // Entry point
+#[cfg(not(feature = "no-entrypoint"))]
 entrypoint!(process_instruction);
 
 // This is our wrapper over the processor's implementation
+#[cfg(not(feature = "no-entrypoint"))]
 pub fn process_instruction(
     program_id: &Pubkey,
     accounts: &[AccountInfo],
